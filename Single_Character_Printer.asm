@@ -34,3 +34,17 @@ MAIN:
     INT 21H; This instruction calls the DOS service, hence the program returns to dos.
 	
 END MAIN; This instruction ends the program.
+
+
+
+;RGB Color Attributes
+;Determined by 3 binary options
+;4 is equal to red, 2 is equal to blue & 1 is equal to Blue
+;000 is equal to Black 
+;111 is equal to White
+;001 is equal to Blue
+;010 is equal to Green
+;011 is equal to Blue Green
+;100 is equal to Red
+;101 is equal to Purple 
+;110 is equal to Brown
