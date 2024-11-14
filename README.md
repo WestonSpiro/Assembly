@@ -7,7 +7,7 @@ General Purpose Registers:
 
 16-Bit BX
 32-Bit EBX
-(^)These are known as the "Base Register" which is used to hol dindex in addressing and can also be used in computation
+(^)These are known as the "Base Register" which is used to hold index in addressing and can also be used in computation
 
 16-Bit CX
 32-Bit ECX
