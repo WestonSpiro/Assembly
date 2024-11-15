@@ -1,5 +1,7 @@
 Learning Assembly Language.
 
+*All the code snippets provided have been tested in GUI Turbo Assembler 5.1*
+
 General Purpose Registers:
 16-Bit AX
 32-Bit EAX (The E stands for extended) 
@@ -23,7 +25,7 @@ AX consists of AH (Higher 8-bit) and AL (Lower 8-bit)
 -----------------------------------------------------------------------------------------------------------------------
 
 Segment Registers:
-Segments are specific areas defined in an assembly program fro containing data, code and stack.
+Segments are specific areas defined in an assembly program for containing data, code and stack.
 The three main segments are
 
 Code Segment (CS Register) - Contains all the instructions to be executed. A 16-bit code segment register stores the starting address of the code segment
