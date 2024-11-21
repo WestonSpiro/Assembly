@@ -1,0 +1,41 @@
+.Model Small
+.Stack
+.Data; Declare string in Data segment
+	strInstruction DB"Enter a character: $"
+		strResult DB 0AH, "Print the entered character 5 times: $"; OAH means line feed or next line
+.Code
+Main:
+	;Initialize Seg&Off for string display (start)
+	MOV AX,@data
+	MOV DS,AX
+	MOV ES, AX
+	;Initialize Seg&Off for string display (end)
+	
+	;Display string from a variable (start)
+	MOV AH, 09H
+	LEA DX, strInstruction
+	INT 21H
+	;Display string from a variable (end)
+	
+	;Read one character with echo (start)
+	MOV AH,01D
+	INT 21H
+	;Read one character with echo (end)
+	
+	;Display string from a variable (start)
+	MOV AH,09H
+	LEA DX, strResult
+	INT 21H
+	;Display strin gfrom a variable (end)
+	
+	;Writes one character N times to the screen (start)
+	MOV AH,09
+	MOV BH,00
+	MOV BL,07H
+	MOV CX,5D
+	INT 10H
+	;Writes one character N times to the screen (end)
+	
+	MOV AH,4CH
+	INT 21H ;Initializes "Press any key to exit"
+End Main
