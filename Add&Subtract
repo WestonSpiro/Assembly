@@ -1,0 +1,80 @@
+.Model Small
+.Stack
+.Data
+    ;Variables are declared in Data segment
+    entNum1 DB 0AH, "Enter 1st number: $"; DB - Define Byte (allocates 1 byte)
+    entNum2 DB 0AH, "Enter 2nd number: $"
+    theSum DB 0AH, "The sum is: $"
+    theDif DB 0AH, "The difference is: $"
+    valSum DB 10 DUP("$")
+    valDif DB 10 DUP("$")
+
+.Code
+Main:
+    MOV AX,@data
+    MOV DS,AX
+    MOV ES,AX
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,entNum1; Load effective address (LEA)
+    INT 21H
+    ;Display string from a variable (end)
+    
+    ;Read one character with echo (start)
+    MOV AH,01D
+    INT 21H
+    ;Read one character with echo (end)
+    
+    SUB AL,48D
+    MOV BL,AL
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,entNum2
+    INT 21H
+    ;Display string from a variable (end)
+    
+    ;Read one character with echo (start)
+    MOV AH,01D
+    INT 21H
+    ;Read one character with echo (end)
+    
+    SUB AL,48D
+    MOV CL,AL
+    
+    ADD AL,BL
+    ADD AL,48D
+    MOV valSum,AL
+    
+    SUB BL,CL
+    ADD BL,48D
+    MOV valDif,BL
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,theSum
+    INT 21H
+    ;Display string from a variable (end)
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,valSum
+    INT 21H
+    ;Display string from a variable (end)
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,theDif
+    INT 21H
+    ;Display string from a variable (end)
+    
+    ;Display string from a variable (start)
+    MOV AH,09H
+    LEA DX,valDif
+    INT 21H
+    ;Display string from a variable (end)
+    
+    MOV AH,4CH
+    INT 21H
+End Main
