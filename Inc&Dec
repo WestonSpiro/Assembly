@@ -1,0 +1,50 @@
+.Model Small
+.Stack
+.Data
+	entNum DB 0AH, "Enter a number: $"
+	theInc DB 0AH, "Incremented number is: $"
+	theDec DB 0AH, "Decremented number is: $"
+	numInc DB 10 DUP("$"); DUP means to duplicate
+	numDec DB 10 DUP("$")
+.Code
+Main:
+	;Initialize Segment & Offset for string display
+	MOV AX, @data
+	MOV DS, AX
+	MOV ES, AX
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, entNum; LEA - Load Effective Address
+	INT 21H
+	;Read one character w/ echo
+	MOV AH, 01D
+	INT 21H
+	
+	SUB AL, 48D
+	MOV BL, AL
+	INC BL
+	DEC AL
+	ADD BL, 48D
+	ADD AL, 48D
+	MOV numInc, BL
+	MOV numDec, AL
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, theInc
+	INT 21H
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, numInc
+	INT 21H
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, theDec
+	INT 21H
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, numDec
+	INT 21H
+	
+	MOV AH, 4CH
+	INT 21H
+End Main
