@@ -1,0 +1,60 @@
+.Model Small
+.Stack
+.Data
+	;Declare string in Data segment
+	entMulcand DB 0AH, "Enter multiplicand: $"
+	entMultier DB 0AH, "Enter multiplier: $"
+	thePro DB 0AH, "The product is: $"
+	valPro DB 10 DUP("$")
+	
+.Code
+Main:
+	;initialize segment & offset for string display
+	MOV AX, @data
+	MOV DS, AX
+	MOV ES, AX
+	
+	;Display strin gfrom a variable
+	MOV AH, 09H
+	LEA DX, entMulcand
+	INT 21H
+	
+	;Read one character with echo
+	MOV Ah, 01D
+	INT 21H
+	
+	SUB AL, 48D
+	MOV BL, AL
+	
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, entMultier 
+	INT 21H
+	
+	;Read one character with echo
+	MOV AH, 01D
+	INT 21H
+	
+	SUB AL, 48D
+	MOV CL, AL
+	
+	MOV AL, BL
+	MUL CL
+	
+	ADD AL, 48D
+	
+	MOV valPro, AL
+	
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, thePro
+	INT 21H
+	
+	;Display string from a variable
+	MOV AH, 09H
+	LEA DX, valPro
+	Int 21H
+	
+	MOV AH, 4CH
+	INT 21H
+End Main
